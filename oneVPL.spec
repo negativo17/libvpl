@@ -1,6 +1,6 @@
 Name:           oneVPL
 Version:        2022.0.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
 URL:            https://www.intel.com/content/www/us/en/developer/tools/oneapi/onevpl.html
@@ -107,6 +107,9 @@ rm -fr %{buildroot}%{_docdir}
 %{_datadir}/%{name}/examples
 
 %changelog
+* Wed Mar 02 2022 Simone Caronni <negativo17@gmail.com> - 2022.0.5-2
+- Rebuild for updated libva.
+
 * Wed Mar 02 2022 Simone Caronni <negativo17@gmail.com> - 2022.0.5-1
 - Update to 2022.0.5.
 
