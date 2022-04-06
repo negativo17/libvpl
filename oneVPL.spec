@@ -8,16 +8,14 @@ ExclusiveArch:  x86_64
 
 Source0:        https://github.com/oneapi-src/oneVPL/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires:  cmake
-BuildRequires:  gcc-c++
+BuildRequires:  cmake3
+BuildRequires:  devtoolset-9-gcc-c++
 BuildRequires:  pkgconfig(libdrm) >= 2.4.91
 BuildRequires:  pkgconfig(libva) >= 1.2
 BuildRequires:  pkgconfig(libva-drm) >= 1.2
 BuildRequires:  pkgconfig(libva-x11) >= 1.10.0
 BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(wayland-client)
-BuildRequires:  python3dist(pybind11)
-BuildRequires:  python3-devel
 
 %description
 The oneAPI Video Processing Library (oneVPL) provides a single video processing
@@ -40,12 +38,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for developing
 applications that use %{name}.
 
-%package -n python3-%{name}
-Summary:    Python3 interface to %{name}
-
-%description -n python3-%{name}
-This package contains python3 interfaces to %{name}.
-
 %package        samples
 Summary:        Sample programs and source code for %{name}
 Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
@@ -57,13 +49,21 @@ This package contains sample programs and applications that use %{name}.
 %autosetup -p1
 
 %build
-%cmake \
-    -DBUILD_PYTHON_BINDING:BOOL=ON \
-    -DPYTHON_INSTALL_DIR:STRING=%{python3_sitearch}
-%cmake_build
+mkdir build
+pushd build
+
+. /opt/rh/devtoolset-9/enable
+%cmake3 -DBUILD_PYTHON_BINDING:BOOL=OFF ..
+%cmake3_build
+
+popd
 
 %install
-%cmake_install
+pushd build
+
+%cmake3_install
+
+popd
 
 find %{buildroot} -name '*.la' -delete
 
@@ -90,9 +90,6 @@ rm -fr %{buildroot}%{_docdir}
 %{_libdir}/cmake/vpl/VPLConfigVersion.cmake
 %{_libdir}/libvpl.so
 %{_libdir}/pkgconfig/vpl.pc
-
-%files -n python3-%{name}
-%{python3_sitearch}/*
 
 %files samples
 %{_bindir}/decvpp_tool
