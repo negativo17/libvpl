@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2022.1.0
+Version:        2022.1.1
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -16,6 +16,10 @@ BuildRequires:  pkgconfig(libva-drm) >= 1.2
 BuildRequires:  pkgconfig(libva-x11) >= 1.10.0
 BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(wayland-client)
+
+Requires:       intel-mediasdk
+Requires:       oneVPL-cpu
+Requires:       oneVPL-intel-gpu
 
 %description
 The oneAPI Video Processing Library (oneVPL) provides a single video processing
@@ -68,20 +72,21 @@ popd
 find %{buildroot} -name '*.la' -delete
 
 # Let RPM pick up documents in the files section
-rm -fr %{buildroot}%{_docdir}
+rm -fr %{buildroot}%{_datadir}/vpl/licensing
 
 %{?ldconfig_scriptlets}
 
 %files
 %license LICENSE
 %doc README.md CONTRIBUTING.md third-party-programs.txt
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/env
-%{_datadir}/%{name}/modulefiles
-%dir %{_libdir}/%{name}
-%{_libdir}/%{name}/libvpl_wayland.so
+%dir %{_prefix}/etc/vpl
+%{_prefix}/etc/vpl/vars.sh
+%dir %{_prefix}/etc/modulefiles
+%{_prefix}/etc/modulefiles/vpl
+%dir %{_libdir}/vpl
+%{_libdir}/vpl/libvpl_wayland.so
 %{_libdir}/libvpl.so.2
-%{_libdir}/libvpl.so.2.6
+%{_libdir}/libvpl.so.2.7
 
 %files devel
 %{_includedir}/vpl
@@ -101,9 +106,14 @@ rm -fr %{buildroot}%{_docdir}
 %{_bindir}/sample_multi_transcode
 %{_bindir}/sample_vpp
 %{_bindir}/vpl-inspect
-%{_datadir}/%{name}/examples
+%dir %{_datadir}/vpl
+%{_datadir}/vpl/examples
 
 %changelog
+* Tue Apr 26 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.1-1
+- Update to 2022.1.1.
+- Require implementations (at least one must be installed)
+
 * Sat Mar 19 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.0-1
 - Update to 2022.1.0.
 
