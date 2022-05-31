@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2022.1.3
+Version:        2022.1.4
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -16,6 +16,8 @@ BuildRequires:  pkgconfig(libva-drm) >= 1.2
 BuildRequires:  pkgconfig(libva-x11) >= 1.10.0
 BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-protocols) >= 1.15
+BuildRequires:  pkgconfig(x11)
 BuildRequires:  python3dist(pybind11)
 BuildRequires:  python3-devel
 
@@ -111,6 +113,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Tue May 31 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.4-1
+- Update to 2022.1.4.
+
 * Wed May 25 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.3-1
 - Update to 2022.1.3.
 
