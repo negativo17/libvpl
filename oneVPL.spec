@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2022.1.3
+Version:        2022.1.5
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -83,8 +83,6 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_prefix}/etc/vpl/vars.sh
 %dir %{_prefix}/etc/modulefiles
 %{_prefix}/etc/modulefiles/vpl
-%dir %{_libdir}/vpl
-%{_libdir}/vpl/libvpl_wayland.so
 %{_libdir}/libvpl.so.2
 %{_libdir}/libvpl.so.2.7
 
@@ -98,9 +96,6 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 
 %files samples
 %{_bindir}/decvpp_tool
-%{_bindir}/hello-decode
-%{_bindir}/hello-encode
-%{_bindir}/hello-vpp
 %{_bindir}/sample_decode
 %{_bindir}/sample_encode
 %{_bindir}/sample_multi_transcode
@@ -110,6 +105,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Thu Jun 16 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.5-1
+- Update to 2022.1.5.
+
 * Wed May 25 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.3-1
 - Update to 2022.1.3.
 
