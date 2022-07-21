@@ -83,6 +83,7 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_prefix}/etc/vpl/vars.sh
 %dir %{_prefix}/etc/modulefiles
 %{_prefix}/etc/modulefiles/vpl
+%{_bindir}/system_analyzer
 %{_libdir}/libvpl.so.2
 %{_libdir}/libvpl.so.2.7
 
