@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2022.1.5
+Version:        2022.1.6
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -110,6 +110,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Thu Jul 21 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.6-1
+- Update to 2022.1.6.
+
 * Thu Jun 16 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.5-1
 - Update to 2022.1.5.
 
