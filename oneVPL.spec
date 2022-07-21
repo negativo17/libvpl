@@ -85,6 +85,7 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_prefix}/etc/modulefiles/vpl
 %dir %{_libdir}/vpl
 %{_libdir}/vpl/libvpl_wayland.so
+%{_bindir}/system_analyzer
 %{_libdir}/libvpl.so.2
 %{_libdir}/libvpl.so.2.7
 
