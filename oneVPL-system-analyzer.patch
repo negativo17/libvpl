@@ -1,0 +1,22 @@
+diff -Naur oneVPL-2022.1.6.old/tools/cli/system_analyzer/system_analyzer.cpp oneVPL-2022.1.6/tools/cli/system_analyzer/system_analyzer.cpp
+--- oneVPL-2022.1.6.old/tools/cli/system_analyzer/system_analyzer.cpp	2022-07-22 16:11:41.469702937 +0200
++++ oneVPL-2022.1.6/tools/cli/system_analyzer/system_analyzer.cpp	2022-07-22 16:12:40.671820819 +0200
+@@ -197,14 +197,14 @@
+ 
+ int main() {
+     bool check_gpu_caps = true;
+-    void *libva_handle  = dlopen("libva.so", RTLD_NOW | RTLD_GLOBAL);
++    void *libva_handle  = dlopen("libva.so.2", RTLD_NOW | RTLD_GLOBAL);
+     if (!libva_handle) {
+-        printf("could not open libva.so\n");
++        printf("could not open libva.so.2\n");
+         check_gpu_caps = false;
+     }
+-    void *libvadrm_handle = dlopen("libva-drm.so", RTLD_NOW | RTLD_GLOBAL);
++    void *libvadrm_handle = dlopen("libva-drm.so.2", RTLD_NOW | RTLD_GLOBAL);
+     if (!libvadrm_handle) {
+-        printf("could not open libva-drm.so\n");
++        printf("could not open libva-drm.so.2\n");
+         check_gpu_caps = false;
+     }
+ 

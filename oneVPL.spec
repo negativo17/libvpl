@@ -1,12 +1,13 @@
 Name:           oneVPL
 Version:        2022.1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
 URL:            https://www.intel.com/content/www/us/en/developer/tools/oneapi/onevpl.html
 ExclusiveArch:  x86_64
 
 Source0:        https://github.com/oneapi-src/oneVPL/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch0:         %{name}-system-analyzer.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -111,6 +112,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Fri Jul 22 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.6-2
+- Patch system_analyzer so it works without devel subpackage installed.
+
 * Thu Jul 21 2022 Simone Caronni <negativo17@gmail.com> - 2022.1.6-1
 - Update to 2022.1.6.
 
