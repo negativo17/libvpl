@@ -19,8 +19,6 @@ BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols) >= 1.15
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  python3dist(pybind11)
-BuildRequires:  python3-devel
 
 Recommends:     intel-mediasdk
 Recommends:     oneVPL-cpu
@@ -47,12 +45,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for developing
 applications that use %{name}.
 
-%package -n python3-%{name}
-Summary:    Python3 interface to %{name}
-
-%description -n python3-%{name}
-This package contains python3 interfaces to %{name}.
-
 %package        samples
 Summary:        Sample programs and source code for %{name}
 Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
@@ -64,9 +56,7 @@ This package contains sample programs and applications that use %{name}.
 %autosetup -p1
 
 %build
-%cmake \
-    -DBUILD_PYTHON_BINDING:BOOL=ON \
-    -DPYTHON_INSTALL_DIR:STRING=%{python3_sitearch}
+%cmake
 %cmake_build
 
 %install
@@ -98,9 +88,6 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_libdir}/libvpl.so
 %{_libdir}/pkgconfig/vpl.pc
 
-%files -n python3-%{name}
-%{python3_sitearch}/*
-
 %files samples
 %{_bindir}/sample_decode
 %{_bindir}/sample_encode
@@ -113,6 +100,7 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %changelog
 * Fri Nov 18 2022 Simone Caronni <negativo17@gmail.com> - 2023.1.0-1
 - Update to 2023.1.0.
+- Drop python preview.
 
 * Mon Oct 24 2022 Simone Caronni <negativo17@gmail.com> - 2022.2.5-1
 - Update to 2022.2.5.
