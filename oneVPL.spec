@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2023.1.0
+Version:        2023.1.1
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -98,6 +98,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Thu Jan 26 2023 Simone Caronni <negativo17@gmail.com> - 2023.1.1-1
+- Update to 2023.1.1.
+
 * Fri Nov 18 2022 Simone Caronni <negativo17@gmail.com> - 2023.1.0-1
 - Update to 2023.1.0.
 - Drop python preview.
