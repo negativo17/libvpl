@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2023.1.3
+Version:        2023.2.0
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -8,6 +8,7 @@ ExclusiveArch:  x86_64
 
 Source0:        https://github.com/oneapi-src/oneVPL/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-system-analyzer.patch
+Patch1:         https://src.fedoraproject.org/rpms/oneVPL/raw/rawhide/f/0001-Fix-config-install-destinations-when-prefix-is-usr-9.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -23,6 +24,8 @@ BuildRequires:  pkgconfig(x11)
 Recommends:     intel-mediasdk
 Recommends:     oneVPL-cpu
 Recommends:     oneVPL-intel-gpu
+
+Obsoletes:      python3-%{name} < %{version}-%{release}
 
 %description
 The oneAPI Video Processing Library (oneVPL) provides a single video processing
@@ -70,15 +73,14 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %files
 %license LICENSE
 %doc README.md CONTRIBUTING.md third-party-programs.txt
-%dir %{_prefix}/etc/vpl
-%{_prefix}/etc/vpl/vars.sh
-%dir %{_prefix}/etc/modulefiles
-%{_prefix}/etc/modulefiles/vpl
-%dir %{_libdir}/vpl
+%dir %{_sysconfdir}/vpl
+%{_sysconfdir}/vpl/vars.sh
+%dir %{_sysconfdir}/modulefiles
+%{_sysconfdir}/modulefiles/vpl
 %{_libdir}/vpl/libvpl_wayland.so
 %{_bindir}/system_analyzer
 %{_libdir}/libvpl.so.2
-%{_libdir}/libvpl.so.2.8
+%{_libdir}/libvpl.so.2.9
 
 %files devel
 %{_includedir}/vpl
@@ -98,6 +100,10 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Thu Apr 13 2023 Simone Caronni <negativo17@gmail.com> - 2023.2.0-1
+- Update to 2023.2.0.
+- Fix install path for config files (#2177912).
+
 * Tue Mar 07 2023 Simone Caronni <negativo17@gmail.com> - 2023.1.3-1
 - Update to 2023.1.3.
 
