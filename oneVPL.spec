@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2023.2.1
+Version:        2023.3.0
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -8,7 +8,7 @@ ExclusiveArch:  x86_64
 
 Source0:        https://github.com/oneapi-src/oneVPL/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-system-analyzer.patch
-Patch1:         https://src.fedoraproject.org/rpms/oneVPL/raw/rawhide/f/0001-Fix-config-install-destinations-when-prefix-is-usr-9.patch
+Patch1:         %{name}-etc.patch
 
 BuildRequires:  cmake3
 BuildRequires:  devtoolset-9-gcc-c++
@@ -109,6 +109,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Fri Jul 14 2023 Simone Caronni <negativo17@gmail.com> - 2023.3.0-1
+- Update to 2023.3.0.
+
 * Wed Apr 19 2023 Simone Caronni <negativo17@gmail.com> - 2023.2.1-1
 - Update to 2023.2.1.
 
