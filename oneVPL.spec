@@ -1,5 +1,5 @@
 Name:           oneVPL
-Version:        2023.3.1
+Version:        2023.4.0
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -8,7 +8,6 @@ ExclusiveArch:  x86_64
 
 Source0:        https://github.com/oneapi-src/oneVPL/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-system-analyzer.patch
-Patch1:         %{name}-etc.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -56,16 +55,14 @@ Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 This package contains sample programs and applications that use %{name}.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n libvpl-%{version}
 
 %build
-%cmake
+%cmake -DCMAKE_INSTALL_SYSCONFDIR=%{_sysconfdir}
 %cmake_build
 
 %install
 %cmake_install
-
-find %{buildroot} -name '*.la' -delete
 
 # Let RPM pick up documents in the files section
 rm -fr %{buildroot}%{_datadir}/vpl/licensing
@@ -75,12 +72,11 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %doc README.md CONTRIBUTING.md third-party-programs.txt
 %dir %{_sysconfdir}/vpl
 %{_sysconfdir}/vpl/vars.sh
-%dir %{_sysconfdir}/modulefiles
-%{_sysconfdir}/modulefiles/vpl
-%{_libdir}/vpl/libvpl_wayland.so
-%{_bindir}/system_analyzer
 %{_libdir}/libvpl.so.2
-%{_libdir}/libvpl.so.2.9
+%{_libdir}/libvpl.so.2.10
+%{_bindir}/system_analyzer
+%dir %{_libdir}/vpl
+%{_libdir}/vpl/libvpl_wayland.so
 
 %files devel
 %{_includedir}/vpl
@@ -100,6 +96,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Wed Dec 13 2023 Simone Caronni <negativo17@gmail.com> - 2023.4.0-1
+- Update to 2023.4.0.
+
 * Tue Aug 08 2023 Simone Caronni <negativo17@gmail.com> - 2023.3.1-1
 - Update to 2023.3.1.
 

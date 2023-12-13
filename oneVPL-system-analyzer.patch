@@ -1,7 +1,7 @@
-diff -Naur oneVPL-2022.1.6.old/tools/cli/system_analyzer/system_analyzer.cpp oneVPL-2022.1.6/tools/cli/system_analyzer/system_analyzer.cpp
---- oneVPL-2022.1.6.old/tools/cli/system_analyzer/system_analyzer.cpp	2022-07-22 16:11:41.469702937 +0200
-+++ oneVPL-2022.1.6/tools/cli/system_analyzer/system_analyzer.cpp	2022-07-22 16:12:40.671820819 +0200
-@@ -197,14 +197,14 @@
+diff -Naur libvpl-2023.4.0.old/tools/cli/system_analyzer/system_analyzer.cpp libvpl-2023.4.0/tools/cli/system_analyzer/system_analyzer.cpp
+--- libvpl-2023.4.0.old/tools/cli/system_analyzer/system_analyzer.cpp	2023-12-13 17:55:03.442126520 +0100
++++ libvpl-2023.4.0/tools/cli/system_analyzer/system_analyzer.cpp	2023-12-13 17:55:28.439555815 +0100
+@@ -210,14 +210,14 @@
  
  int main() {
      bool check_gpu_caps = true;
