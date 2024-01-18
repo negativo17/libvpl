@@ -1,12 +1,13 @@
-Name:           oneVPL
-Version:        2023.4.0
+Name:           libvpl
+Epoch:          1
+Version:        2.10.1
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
-URL:            https://www.intel.com/content/www/us/en/developer/tools/oneapi/onevpl.html
+URL:            https://intel.github.io/libvpl/latest/index.html
 ExclusiveArch:  x86_64
 
-Source0:        https://github.com/oneapi-src/oneVPL/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/intel/libvpl/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-system-analyzer.patch
 
 BuildRequires:  cmake
@@ -24,7 +25,8 @@ Recommends:     intel-mediasdk
 Recommends:     oneVPL-cpu
 Recommends:     oneVPL-intel-gpu
 
-Obsoletes:      python3-%{name} < %{version}-%{release}
+Obsoletes:      oneVPL <= 2023.4.0
+Provides:       oneVPL%{?_isa} == %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description
 The oneAPI Video Processing Library (oneVPL) provides a single video processing
@@ -41,7 +43,10 @@ implementations:
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+Obsoletes:      oneVPL-devel <= 2023.4.0
+Provides:       oneVPL-devel%{?_isa} == %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for developing
@@ -49,7 +54,10 @@ applications that use %{name}.
 
 %package        samples
 Summary:        Sample programs and source code for %{name}
-Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
+Requires:       %{name}-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+Obsoletes:      oneVPL-samples <= 2023.4.0
+Provides:       oneVPL-samples%{?_isa} == %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description    samples
 This package contains sample programs and applications that use %{name}.
@@ -91,11 +99,16 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_bindir}/sample_encode
 %{_bindir}/sample_multi_transcode
 %{_bindir}/sample_vpp
+%{_bindir}/val-surface-sharing
+%{_bindir}/vpl-import-export
 %{_bindir}/vpl-inspect
 %dir %{_datadir}/vpl
 %{_datadir}/vpl/examples
 
 %changelog
+* Thu Jan 18 2024 Simone Caronni <negativo17@gmail.com> - 1:2.10.1-1
+- Rename to libvpl with new versioning scheme.
+
 * Wed Dec 13 2023 Simone Caronni <negativo17@gmail.com> - 2023.4.0-1
 - Update to 2023.4.0.
 
