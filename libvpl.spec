@@ -1,6 +1,6 @@
 Name:           libvpl
 Epoch:          1
-Version:        2.10.2
+Version:        2.11.0
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -8,7 +8,6 @@ URL:            https://intel.github.io/libvpl/latest/index.html
 ExclusiveArch:  x86_64
 
 Source0:        https://github.com/intel/libvpl/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch0:         %{name}-system-analyzer.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -81,10 +80,7 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %dir %{_sysconfdir}/vpl
 %{_sysconfdir}/vpl/vars.sh
 %{_libdir}/libvpl.so.2
-%{_libdir}/libvpl.so.2.10
-%{_bindir}/system_analyzer
-%dir %{_libdir}/vpl
-%{_libdir}/vpl/libvpl_wayland.so
+%{_libdir}/libvpl.so.2.11
 
 %files devel
 %{_includedir}/vpl
@@ -95,17 +91,13 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_libdir}/pkgconfig/vpl.pc
 
 %files samples
-%{_bindir}/sample_decode
-%{_bindir}/sample_encode
-%{_bindir}/sample_multi_transcode
-%{_bindir}/sample_vpp
-%{_bindir}/val-surface-sharing
-%{_bindir}/vpl-import-export
-%{_bindir}/vpl-inspect
 %dir %{_datadir}/vpl
 %{_datadir}/vpl/examples
 
 %changelog
+* Sat May 04 2024 Simone Caronni <negativo17@gmail.com> - 1:2.11.0-1
+- Update to 2.11.0.
+
 * Wed Mar 20 2024 Simone Caronni <negativo17@gmail.com> - 1:2.10.2-1
 - Update to 2.10.2.
 
