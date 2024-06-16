@@ -1,7 +1,7 @@
 Name:           libvpl
 Epoch:          1
 Version:        2.11.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
 URL:            https://intel.github.io/libvpl/latest/index.html
@@ -19,8 +19,6 @@ BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(x11)
 
 Requires:       intel-mediasdk
-Requires:       oneVPL-cpu
-Requires:       oneVPL-intel-gpu
 
 Obsoletes:      oneVPL <= 2023.4.0
 Provides:       oneVPL%{?_isa} == %{?epoch:%{epoch}:}%{version}-%{release}
@@ -105,6 +103,10 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Sun Jun 16 2024 Simone Caronni <negativo17@gmail.com> - 1:2.11.0-2
+- Drop hard dependency on oneVPL-cpu/intel-gpu to avoid circular dependency with
+  ffmpeg.
+
 * Sat May 04 2024 Simone Caronni <negativo17@gmail.com> - 1:2.11.0-1
 - Update to 2.11.0.
 
