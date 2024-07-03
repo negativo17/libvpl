@@ -1,6 +1,6 @@
 Name:           libvpl
 Epoch:          1
-Version:        2.11.0
+Version:        2.12.0
 Release:        1%{?dist}
 Summary:        oneAPI Video Processing Library
 License:        MIT
@@ -80,7 +80,7 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %dir %{_sysconfdir}/vpl
 %{_sysconfdir}/vpl/vars.sh
 %{_libdir}/libvpl.so.2
-%{_libdir}/libvpl.so.2.11
+%{_libdir}/libvpl.so.2.12
 
 %files devel
 %{_includedir}/vpl
@@ -95,6 +95,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Wed Jul 03 2024 Simone Caronni <negativo17@gmail.com> - 1:2.12.0-1
+- Update to 2.12.0.
+
 * Sat May 04 2024 Simone Caronni <negativo17@gmail.com> - 1:2.11.0-1
 - Update to 2.11.0.
 
