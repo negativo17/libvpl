@@ -1,8 +1,11 @@
+%global mfx_major 2
+%global mfx_minor 12
+
 Name:           libvpl
 Epoch:          1
 Version:        2.12.0
 Release:        1%{?dist}
-Summary:        oneAPI Video Processing Library
+Summary:        Intel Video Processing Library
 License:        MIT
 URL:            https://intel.github.io/libvpl/latest/index.html
 ExclusiveArch:  x86_64
@@ -22,7 +25,7 @@ BuildRequires:  pkgconfig(x11)
 
 Recommends:     intel-mediasdk
 Recommends:     oneVPL-cpu
-Recommends:     oneVPL-intel-gpu
+Recommends:     intel-vpl-gpu-rt
 
 Obsoletes:      oneVPL <= 2023.4.0
 Provides:       oneVPL%{?_isa} == %{?epoch:%{epoch}:}%{version}-%{release}
@@ -37,8 +40,8 @@ video processing you need to install at least one implementation. Current
 implementations:
 
 - oneVPL-cpu for use on CPU
-- oneVPL-intel-gpu for use on Intel Xe graphics and newer
-- Media SDK for use on legacy Intel graphics
+- intel-vpl-gpu-rt for use on Intel Xe graphics and newer
+- intel-mediasdk for use on legacy Intel graphics
 
 %package        devel
 Summary:        Development files for %{name}
@@ -79,8 +82,8 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %doc README.md CONTRIBUTING.md third-party-programs.txt
 %dir %{_sysconfdir}/vpl
 %{_sysconfdir}/vpl/vars.sh
-%{_libdir}/libvpl.so.2
-%{_libdir}/libvpl.so.2.12
+%{_libdir}/libvpl.so.%{mfx_major}
+%{_libdir}/libvpl.so.%{mfx_major}.%{mfx_minor}
 
 %files devel
 %{_includedir}/vpl
