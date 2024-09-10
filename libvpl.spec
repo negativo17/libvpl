@@ -1,9 +1,9 @@
 %global mfx_major 2
-%global mfx_minor 12
+%global mfx_minor 13
 
 Name:           libvpl
 Epoch:          1
-Version:        2.12.0
+Version:        2.13.0
 Release:        1%{?dist}
 Summary:        Intel Video Processing Library
 License:        MIT
@@ -24,7 +24,6 @@ BuildRequires:  pkgconfig(wayland-protocols) >= 1.15
 BuildRequires:  pkgconfig(x11)
 
 Recommends:     intel-mediasdk
-Recommends:     oneVPL-cpu
 Recommends:     intel-vpl-gpu-rt
 
 Obsoletes:      oneVPL <= 2023.4.0
@@ -39,7 +38,6 @@ The base package is limited to the dispatcher and samples. To use oneVPL for
 video processing you need to install at least one implementation. Current
 implementations:
 
-- oneVPL-cpu for use on CPU
 - intel-vpl-gpu-rt for use on Intel Xe graphics and newer
 - intel-mediasdk for use on legacy Intel graphics
 
@@ -98,6 +96,10 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Tue Sep 10 2024 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-1
+- Update to 2.13.0.
+- Drop oneVPL-cpu suggestion and Recommendation.
+
 * Wed Jul 03 2024 Simone Caronni <negativo17@gmail.com> - 1:2.12.0-1
 - Update to 2.12.0.
 
