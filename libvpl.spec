@@ -1,9 +1,9 @@
 %global mfx_major 2
-%global mfx_minor 14
+%global mfx_minor 15
 
 Name:           libvpl
 Epoch:          1
-Version:        2.14.0
+Version:        2.15.0
 Release:        1%{?dist}
 Summary:        Intel Video Processing Library
 License:        MIT
@@ -96,6 +96,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Mon Jun 23 2025 Simone Caronni <negativo17@gmail.com> - 1:2.15.0-1
+- Update to 2.15.0.
+
 * Fri Dec 27 2024 Simone Caronni <negativo17@gmail.com> - 1:2.14.0-1
 - Update to 2.14.0.
 
