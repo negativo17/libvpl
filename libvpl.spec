@@ -4,7 +4,7 @@
 Name:           libvpl
 Epoch:          1
 Version:        2.15.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Intel Video Processing Library
 License:        MIT
 URL:            https://intel.github.io/libvpl/latest/index.html
@@ -66,7 +66,9 @@ This package contains sample programs and applications that use %{name}.
 %autosetup -p1 -n libvpl-%{version}
 
 %build
-%cmake -DCMAKE_INSTALL_SYSCONFDIR=%{_sysconfdir}
+%cmake \
+    -DBUILD_EXAMPLES=ON \
+    -DCMAKE_INSTALL_SYSCONFDIR=%{_sysconfdir}
 %cmake_build
 
 %install
@@ -96,6 +98,9 @@ rm -fr %{buildroot}%{_datadir}/vpl/licensing
 %{_datadir}/vpl/examples
 
 %changelog
+* Fri Jul 11 2025 Simone Caronni <negativo17@gmail.com> - 1:2.15.0-2
+- Enable examples.
+
 * Mon Jun 23 2025 Simone Caronni <negativo17@gmail.com> - 1:2.15.0-1
 - Update to 2.15.0.
 
